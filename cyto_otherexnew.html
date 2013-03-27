@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+    
+    <head>
+        <title>Cytoscape Web example</title>
+        
+        <!-- JSON support for IE (needed to use JS API) -->
+        <script type="text/javascript" src="js/min/json2.min.js"></script>
+        
+        <!-- Flash embedding utility (needed to embed Cytoscape Web) -->
+        <script type="text/javascript" src="js/min/AC_OETags.min.js"></script>
+
+        
+        <!-- Cytoscape Web JS API (needed to reference org.cytoscapeweb.Visualization) -->
+        <script type="text/javascript" src="js/min/cytoscapeweb.min.js"></script>
+        
+        <script type="text/javascript">
+            window.onload=function() {
+                // id of Cytoscape Web container div
+                var div_id = "cytoscapeweb";
+                
+                // you could also use other formats (e.g. GraphML) or grab the network data via AJAX
+                var networ_json = {
+		data: {
+                        nodes: [ { id: "1" }, { id: "2" } {id: "3"}],
+                        edges: [ { id: "2to1", target: "1", source: "2" } ,{id: "3to1", target: "1", source: "2"}]
+                    }               
+
+                };
+                
+                // initialization options
+                var options = {
+                    // where you have the Cytoscape Web SWF
+                    swfPath: "swf/CytoscapeWeb",
+                    // where you have the Flash installer SWF
+                    flashInstallerPath: "swf/playerProductInstall"
+                };
+                
+                // init and draw
+                var vis = new org.cytoscapeweb.Visualization(div_id,options);
+                vis.draw({ network: networ_json });
+            };
+        </script>
+        
+       
+<style type="text/css">
+    /* The Cytoscape Web container must have its dimensions set. */
+    html, body { height: 100%; width: 100%; padding: 0; margin: 0; }
+    /* use absolute value */
+    #cytoscapeweb{ width: 500px; height: 500px; }
+
+    SPAN.physical
+    {
+       BACKGROUND-COLOR: #FF0000;
+       COLOR: #FF0000;
+       FONT-SIZE: 2px;
+       padding-top:0px;
+       padding-bottom:0px;
+       padding-right:18px;
+       padding-left:18px;
+       position:relative;
+       top:-4px;
+    }
+    .genetic
+    {
+       BACKGROUND-COLOR: #6666FF;
+       COLOR: #6666FF;
+       FONT-SIZE: 2px;
+       padding-top:0px;
+       padding-bottom:0px;
+       padding-right:18px;
+       padding-left:18px;
+       position:relative;
+       top:-4px;
+    }
+</style>
+    </head>
+ <div id="cyto_div">
+    <h3 class="interactions">Interaction Network</h3>
+    <div id="caption" style="font-size:12px; font-style:italic">
+    <!-- jQuery will add stuff here -->
+    </div>
+
+    <div id="cytoscapeweb" width="*"></div>
+    <div id="menu">
+    <!-- jQuery will add stuff here -->
+    </div>
+    <div id="legends">
+    <!-- jQuery will add stuff here -->
+    </div>
+    <p>
+      <a style="color: rgb(136, 136, 136); text-decoration: none; background-color: white;" onmouseout="this.style.backgroundColor='white';" onmouseover="this.style.backgroundColor='#f1f1d1';" title="Cytoscape Web" target="_blank" href="http://cytoscapeweb.cytoscape.org">
+
+        Powered by <img border="0/" style="vertical-align: middle;" src="cytoscape_logo_small.png" height="15" width="15"> Cytoscape Web
+      </a>
+    </p>
+</div>   
+    <body >
+       
+            <div id="cytoscapeweb" align=center>
+
+            Cytoscape Web will replace the contents of this div with your graph.
+        </div>
+	
+    </body>
+    
+</html>
+
